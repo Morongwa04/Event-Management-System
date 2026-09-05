@@ -122,3 +122,10 @@ INSERT INTO dbo.[User] (Name, Email, PasswordHash, Role) VALUES
 ('Sipho Dlamini', 'sipho.dlamini@example.com', 'HASH_PLACEHOLDER_3', 'Participant'),
 ('Anna van der Merwe','anna.vdm@example.com', 'HASH_PLACEHOLDER_4', 'Participant');
 GO
+
+-- Events: 3 events, organised by the two organisers above
+INSERT INTO dbo.Event (OrganiserId, Name, Description, EventDate, Location) VALUES
+(1, 'Joburg City Marathon', 'Annual road marathon through the streets of Johannesburg.', '2026-11-15', 'Johannesburg, Gauteng'),
+(1, 'Durban Beachfront Fun Run', 'Family-friendly fun run along the Durban promenade.', '2026-10-04', 'Durban, KwaZulu-Natal'),
+(2, 'Cape Winelands Cycle Challenge', 'Scenic cycling event through the Cape Winelands.', '2026-09-27', 'Stellenbosch, Western Cape');
+GO
