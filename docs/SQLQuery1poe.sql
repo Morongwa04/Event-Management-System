@@ -61,3 +61,21 @@ CONSTRAINT FK_Category_Event FOREIGN KEY (EventId)
 REFERENCES dbo.Event(EventId)
 );
 GO
+
+/* =========================================================
+4. Enrolment
+========================================================= */
+CREATE TABLE dbo.Enrolment (
+EnrolmentId INT IDENTITY(1,1) PRIMARY KEY,
+ParticipantId INT NOT NULL,
+CategoryId INT NOT NULL,
+EnrolmentDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+Status NVARCHAR(20) NOT NULL DEFAULT 'Confirmed'
+CONSTRAINT CK_Enrolment_Status CHECK (Status IN ('Confirmed', 'Cancelled')),
+CONSTRAINT FK_Enrolment_Participant FOREIGN KEY (ParticipantId)
+REFERENCES dbo.[User](UserId),
+CONSTRAINT FK_Enrolment_Category FOREIGN KEY (CategoryId)
+REFERENCES dbo.Category(CategoryId),
+CONSTRAINT UQ_Enrolment_Participant_Category UNIQUE (ParticipantId, CategoryId)
+);
+GO
