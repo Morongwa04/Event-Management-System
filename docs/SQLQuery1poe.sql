@@ -145,3 +145,8 @@ INSERT INTO dbo.Enrolment (ParticipantId, CategoryId, Status) VALUES
 (4, 2, 'Confirmed'), -- Anna enters the 21km
 (3, 5, 'Confirmed'); -- Sipho enters the 60km cycle
 GO
+
+-- Results: sample captured results for a completed enrolment
+INSERT INTO dbo.Result (EnrolmentId, FinishTime, Position, CapturedByOrganiserId) VALUES
+(1, '03:45:12', 214, 1);
+GO
