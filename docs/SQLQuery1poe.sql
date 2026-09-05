@@ -129,3 +129,12 @@ INSERT INTO dbo.Event (OrganiserId, Name, Description, EventDate, Location) VALU
 (1, 'Durban Beachfront Fun Run', 'Family-friendly fun run along the Durban promenade.', '2026-10-04', 'Durban, KwaZulu-Natal'),
 (2, 'Cape Winelands Cycle Challenge', 'Scenic cycling event through the Cape Winelands.', '2026-09-27', 'Stellenbosch, Western Cape');
 GO
+
+-- Categories: at least one per event
+INSERT INTO dbo.Category (EventId, Name, Distance, EntryFee) VALUES
+(1, '42km', 42.20, 350.00),
+(1, '21km', 21.10, 250.00),
+(2, '5km', 5.00, 100.00),
+(2, '10km', 10.00, 150.00),
+(3, '60km', 60.00, 400.00);
+GO
