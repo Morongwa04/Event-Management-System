@@ -138,3 +138,10 @@ INSERT INTO dbo.Category (EventId, Name, Distance, EntryFee) VALUES
 (2, '10km', 10.00, 150.00),
 (3, '60km', 60.00, 400.00);
 GO
+
+-- Enrolments: sample participant enrolments
+INSERT INTO dbo.Enrolment (ParticipantId, CategoryId, Status) VALUES
+(3, 1, 'Confirmed'), -- Sipho enters the 42km
+(4, 2, 'Confirmed'), -- Anna enters the 21km
+(3, 5, 'Confirmed'); -- Sipho enters the 60km cycle
+GO
