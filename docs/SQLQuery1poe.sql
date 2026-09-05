@@ -156,3 +156,7 @@ INSERT INTO dbo.RouteWeather (EventId, Forecast, Temperature, RouteDescription, 
 (1, 'Sunny, light wind', 22.5, 'Starts at FNB Stadium, loops through Soweto and back.', 'https://maps.example.com/joburg-marathon'),
 (3, 'Partly cloudy', 19.0, 'Rolling hills through Stellenbosch wine estates.', 'https://maps.example.com/winelands-cycle');
 GO
+
+SELECT * FROM dbo.[User];
+SELECT * FROM dbo.Event;
+SELECT * FROM dbo.Enrolment;
