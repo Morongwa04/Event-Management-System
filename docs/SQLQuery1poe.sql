@@ -150,3 +150,9 @@ GO
 INSERT INTO dbo.Result (EnrolmentId, FinishTime, Position, CapturedByOrganiserId) VALUES
 (1, '03:45:12', 214, 1);
 GO
+
+-- RouteWeather: sample forecast/route info per event
+INSERT INTO dbo.RouteWeather (EventId, Forecast, Temperature, RouteDescription, RouteMapUrl) VALUES
+(1, 'Sunny, light wind', 22.5, 'Starts at FNB Stadium, loops through Soweto and back.', 'https://maps.example.com/joburg-marathon'),
+(3, 'Partly cloudy', 19.0, 'Rolling hills through Stellenbosch wine estates.', 'https://maps.example.com/winelands-cycle');
+GO
