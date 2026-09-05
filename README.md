@@ -6,63 +6,40 @@ RaceDay is a full-stack web-based event management system designed specifically 
 User Roles
 Organiser
 Create, edit, and delete events
-
 Manage event categories
-
 Capture participant results
-
 View all event enrolments
-
 Access route and weather information
 
 Participant
 Create an account
-
 Browse events
-
 Enter events by selecting a category
-
 View own enrolments
-
 Track personal results
-
 Access event details including route and weather information
 
 System Architecture
 The system follows a three-tier architecture:
-
 Database Layer: SQL Server database with 6 entities
-
 API Layer: RESTful API built with C#
-
 Presentation Layer: MVC web application
 
 Database Schema
 The database consists of the following entities:
-
 User: Stores user accounts with role-based access
-
 Event: Contains event details organised by users
-
 Category: Event categories with distance and entry fee
-
 Enrolment: Participant registrations for event categories
-
 Result: Participant results with finish times and positions
-
 RouteWeather: Weather forecasts and route descriptions for events
 
 Entity Relationships
 User (Organiser) 1 → Many Event
-
 Event 1 → Many Category
-
 User (Participant) 1 → Many Enrolment
-
 Category 1 → Many Enrolment
-
 Enrolment 1 → 1 Result
-
 Event 1 → 1 RouteWeather
 
 API Endpoint Plan
@@ -103,19 +80,13 @@ GET	/api/participants/{id}/results	Retrieves participant's full result history	A
 Technical Documentation
 Database Setup
 The SQL script creates and populates the RaceDay database with realistic South African sample data including:
-
 2 Organisers (Thabo Mokoena, Lindiwe Nkosi)
-
 2 Participants (Sipho Dlamini, Anna van der Merwe)
-
 3 Events (Joburg City Marathon, Durban Beachfront Fun Run, Cape Winelands Cycle Challenge)
-
 Categories for each event with appropriate distances and fees
-
 Sample enrolments and results
 
 ## CI/CD Pipeline
-
 This project uses GitHub Actions for continuous integration and deployment:
 
 ### Part 1 - Repository Validation
@@ -162,3 +133,58 @@ Folder Structure
 │   └── workflows/
 │       └── validate-structure.yml
 └── README.md
+
+Prerequisites
+.NET 8 SDK
+SQL Server (or SQL Server Express)
+SQL Server Management Studio (SSMS)
+Git
+
+Docker Desktop (for Part 3)
+Node.js (for frontend assets)
+
+Setup Instructions
+1. Clone the Repository
+bash
+git clone https://github.com/Morongwa04/Event-Management-System.git
+cd Event-Management-System
+2. Database Setup
+bash
+# Open SSMS and run the SQL script
+# File: docs/RaceDayDB_Schema.sql
+# The script will create and populate the RaceDayDB database
+3. API Setup (Part 2)
+bash
+# Restore dependencies
+dotnet restore
+
+# Build the API
+dotnet build --configuration Release
+
+# Run the API
+cd RaceDay.API
+dotnet run
+4. MVC Application Setup (Part 3)
+bash
+# Restore dependencies
+dotnet restore
+
+# Build the MVC application
+dotnet build --configuration Release
+
+# Install npm dependencies
+cd RaceDay.MVC
+npm install
+
+# Run the MVC application
+dotnet run
+5. Docker Setup (Part 3)
+bash
+# Build Docker image
+docker build -t raceday-app .
+
+# Run Docker container
+docker run -d -p 8080:80 --name raceday-container raceday-app
+
+Contributors
+Morongwa04
