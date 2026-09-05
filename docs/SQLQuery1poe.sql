@@ -32,3 +32,18 @@ CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME()
 );
 GO
 
+/* =========================================================
+2. Event
+========================================================= */
+CREATE TABLE dbo.Event (
+EventId INT IDENTITY(1,1) PRIMARY KEY,
+OrganiserId INT NOT NULL,
+Name NVARCHAR(150) NOT NULL,
+Description NVARCHAR(1000) NULL,
+EventDate DATE NOT NULL,
+Location NVARCHAR(200) NOT NULL,
+CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+CONSTRAINT FK_Event_Organiser FOREIGN KEY (OrganiserId)
+REFERENCES dbo.[User](UserId)
+);
+GO
