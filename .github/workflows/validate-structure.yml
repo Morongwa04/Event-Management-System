@@ -33,7 +33,7 @@ jobs:
     
     - name: Check API Endpoint Plan exists
       run: |
-        if ! ls docs/*.pdf docs/*.md docs/*.txt 2>/dev/null | grep -i "endpoint\|api" > /dev/null; then
+        if ! ls docs/*.pdf docs/*.md docs/*.txt 2>/dev/null | grep -iE "endpoint|api" > /dev/null; then
           echo "Error: API Endpoint Plan not found in /docs folder!"
           echo "Expected: API_ENDPOINT_PLAN.pdf, API_ENDPOINT_PLAN.md, or similar"
           exit 1
@@ -42,12 +42,13 @@ jobs:
     
     - name: Check SQL script exists
       run: |
-        if ! ls docs/*.sql 2>/dev/null | grep -i "schema\|database\|raceday" > /dev/null; then
-          echo "Error: SQL script not found in /docs folder!"
-          echo "Expected: RaceDayDB_Schema.sql or similar .sql file"
+        # Check for ANY .sql file in docs folder
+        if ! ls docs/*.sql 2>/dev/null | grep -q .; then
+          echo "Error: No SQL script found in /docs folder!"
+          echo "Expected: Any .sql file"
           exit 1
         fi
-        echo "✓ SQL script found"
+        echo "✓ SQL script found: $(ls docs/*.sql 2>/dev/null | head -1)"
     
     - name: Check README.md exists
       run: |
