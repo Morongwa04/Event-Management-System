@@ -47,3 +47,17 @@ CONSTRAINT FK_Event_Organiser FOREIGN KEY (OrganiserId)
 REFERENCES dbo.[User](UserId)
 );
 GO
+
+/* =========================================================
+3. Category
+========================================================= */
+CREATE TABLE dbo.Category (
+CategoryId INT IDENTITY(1,1) PRIMARY KEY,
+EventId INT NOT NULL,
+Name NVARCHAR(50) NOT NULL,
+Distance DECIMAL(6,2) NOT NULL,
+EntryFee DECIMAL(8,2) NOT NULL DEFAULT 0,
+CONSTRAINT FK_Category_Event FOREIGN KEY (EventId)
+REFERENCES dbo.Event(EventId)
+);
+GO
