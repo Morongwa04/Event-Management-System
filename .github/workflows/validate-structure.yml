@@ -1,0 +1,71 @@
+name: Validate Repository Structure
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check /docs folder exists
+      run: |
+        if [ ! -d "docs" ]; then
+          echo "Error: /docs folder not found!"
+          exit 1
+        fi
+        echo "✓ /docs folder exists"
+    
+    - name: Check ERD file exists
+      run: |
+        if ! ls docs/*.png docs/*.jpg docs/*.jpeg docs/*.pdf 2>/dev/null | grep -i "erd" > /dev/null; then
+          echo "Error: ERD file not found in /docs folder!"
+          echo "Expected: ERD.png, ERD.jpg, ERD.jpeg, or ERD.pdf"
+          exit 1
+        fi
+        echo "✓ ERD file found"
+    
+    - name: Check API Endpoint Plan exists
+      run: |
+        if ! ls docs/*.pdf docs/*.md docs/*.txt 2>/dev/null | grep -i "endpoint\|api" > /dev/null; then
+          echo "Error: API Endpoint Plan not found in /docs folder!"
+          echo "Expected: API_ENDPOINT_PLAN.pdf, API_ENDPOINT_PLAN.md, or similar"
+          exit 1
+        fi
+        echo "✓ API Endpoint Plan found"
+    
+    - name: Check SQL script exists
+      run: |
+        if ! ls docs/*.sql 2>/dev/null | grep -i "schema\|database\|raceday" > /dev/null; then
+          echo "Error: SQL script not found in /docs folder!"
+          echo "Expected: RaceDayDB_Schema.sql or similar .sql file"
+          exit 1
+        fi
+        echo "✓ SQL script found"
+    
+    - name: Check README.md exists
+      run: |
+        if [ ! -f "README.md" ]; then
+          echo "Error: README.md not found!"
+          exit 1
+        fi
+        echo "✓ README.md exists"
+    
+    - name: Display structure validation summary
+      run: |
+        echo "========================================="
+        echo "  Repository Structure Validation Complete"
+        echo "========================================="
+        echo "✓ /docs folder exists"
+        echo "✓ ERD file present"
+        echo "✓ API Endpoint Plan present"
+        echo "✓ SQL script present"
+        echo "✓ README.md present"
+        echo "========================================="
+        echo "All required files are present!"
