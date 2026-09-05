@@ -79,3 +79,19 @@ REFERENCES dbo.Category(CategoryId),
 CONSTRAINT UQ_Enrolment_Participant_Category UNIQUE (ParticipantId, CategoryId)
 );
 GO
+
+/* =========================================================
+5. Result (1:1 with Enrolment - enforced via UNIQUE FK)
+========================================================= */
+CREATE TABLE dbo.Result (
+ResultId INT IDENTITY(1,1) PRIMARY KEY,
+EnrolmentId INT NOT NULL UNIQUE,
+FinishTime TIME(0) NULL,
+Position INT NULL,
+CapturedByOrganiserId INT NOT NULL,
+CONSTRAINT FK_Result_Enrolment FOREIGN KEY (EnrolmentId)
+REFERENCES dbo.Enrolment(EnrolmentId),
+CONSTRAINT FK_Result_Organiser FOREIGN KEY (CapturedByOrganiserId)
+REFERENCES dbo.[User](UserId)
+);
+GO
