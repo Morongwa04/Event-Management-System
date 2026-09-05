@@ -95,3 +95,18 @@ CONSTRAINT FK_Result_Organiser FOREIGN KEY (CapturedByOrganiserId)
 REFERENCES dbo.[User](UserId)
 );
 GO
+
+/* =========================================================
+6. RouteWeather
+========================================================= */
+CREATE TABLE dbo.RouteWeather (
+RouteWeatherId INT IDENTITY(1,1) PRIMARY KEY,
+EventId INT NOT NULL,
+Forecast NVARCHAR(200) NULL,
+Temperature DECIMAL(4,1) NULL,
+RouteDescription NVARCHAR(1000) NULL,
+RouteMapUrl NVARCHAR(500) NULL,
+CONSTRAINT FK_RouteWeather_Event FOREIGN KEY (EventId)
+REFERENCES dbo.Event(EventId)
+);
+GO
