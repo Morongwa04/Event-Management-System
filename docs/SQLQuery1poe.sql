@@ -110,3 +110,15 @@ CONSTRAINT FK_RouteWeather_Event FOREIGN KEY (EventId)
 REFERENCES dbo.Event(EventId)
 );
 GO
+
+/* =========================================================
+Seed data
+========================================================= */
+
+-- Users: 2 Organisers, 2 Participants
+INSERT INTO dbo.[User] (Name, Email, PasswordHash, Role) VALUES
+('Thabo Mokoena', 'thabo.mokoena@raceday.co.za', 'HASH_PLACEHOLDER_1', 'Organiser'),
+('Lindiwe Nkosi', 'lindiwe.nkosi@raceday.co.za', 'HASH_PLACEHOLDER_2', 'Organiser'),
+('Sipho Dlamini', 'sipho.dlamini@example.com', 'HASH_PLACEHOLDER_3', 'Participant'),
+('Anna van der Merwe','anna.vdm@example.com', 'HASH_PLACEHOLDER_4', 'Participant');
+GO
