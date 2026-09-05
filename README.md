@@ -114,14 +114,43 @@ Categories for each event with appropriate distances and fees
 
 Sample enrolments and results
 
-CI/CD
-The repository includes a GitHub Actions workflow that validates the repository structure by checking:
+## CI/CD Pipeline
 
-The existence of the /docs folder
+This project uses GitHub Actions for continuous integration and deployment:
 
-Required files: ERD image, endpoint plan document, SQL script
+### Part 1 - Repository Validation
+- Validates the existence of required documentation files
+- Checks folder structure and file naming conventions
+- Runs on every push and pull request
 
-The SQL script executes without errors
+### Part 2 - API Build and Test
+- Builds the .NET API
+- Runs unit and integration tests
+- Generates code coverage reports
+- Builds Docker images for the API
+- Deploys to staging environment (develop branch)
+- Deploys to production environment (main/master branch)
+
+### Part 3 - Full Stack Deployment
+- Builds both API and MVC applications
+- Bundles frontend assets
+- Builds production Docker images
+- Runs security scans (Trivy, OWASP ZAP)
+- Deploys to Azure Web App
+- Configures Azure Blob Storage
+- Performs load testing
+- Sends deployment notifications
+
+### CI/CD Status
+
+<img width="1004" height="335" alt="Screenshot 2026-09-05 200241" src="https://github.com/user-attachments/assets/916a8136-2aeb-4162-ba4b-a6355d490aa4" />
+
+
+### Deployment Environments
+
+- **Development**: Automatically deployed from `develop` branch
+- **Staging**: Automatically deployed from `feature/*` branches
+- **Production**: Automatically deployed from `main` and `master` branches
 
 Folder Structure
 /
